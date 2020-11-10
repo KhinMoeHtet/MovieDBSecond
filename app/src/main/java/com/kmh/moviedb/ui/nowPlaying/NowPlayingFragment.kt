@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.kmh.moviedb.R
+import com.kmh.moviedb.model.ResultsItem
+import kotlinx.android.synthetic.main.fragment_now_playing.*
 
-class NowPlayingFragment : Fragment() {
+class NowPlayingFragment : Fragment(),MovieAdapter.OnClickListener{
 
     private lateinit var nowPlayingViewModel: NowPlayingViewModel
 
@@ -19,13 +22,43 @@ class NowPlayingFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        nowPlayingViewModel =
-                ViewModelProvider(this).get(NowPlayingViewModel::class.java)
+        nowPlayingViewModel = ViewModelProvider(this).get(NowPlayingViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_now_playing, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        nowPlayingViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        nowPlayingViewModel=ViewModelProvider(this).get(NowPlayingViewModel::class.java)
+
+        var nowPlayingAdapter = MovieAdapter()
+
+        nowPlayingRecycler.apply {
+            layoutManager=GridLayoutManager(context,2)
+            adapter=nowPlayingAdapter
+        }
+        nowPlayingAdapter.setOnClickListener(this)
+
+        nowPlayingViewModel.getNowPlayingArticle().observe(
+         viewLifecycleOwner, Observer { movies->
+          nowPlayingAdapter.updateArticle(movies.results as List<ResultsItem>)
+
+        }
+      )
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        nowPlayingViewModel.loadData()
+    }
+
+    override fun onClick(item: ResultsItem) {
+        val directions= NowPlayingFragmentDirections.actionNavNowPlayingToNowPlayingDetailsFragment(item)
+        view?.findNavController()?.navigate(directions)
+    }
+
+
+
 }

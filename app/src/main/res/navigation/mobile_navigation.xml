@@ -9,7 +9,11 @@
         android:id="@+id/nav_now_playing"
         android:name="com.kmh.moviedb.ui.nowPlaying.NowPlayingFragment"
         android:label="@string/now_playing"
-        tools:layout="@layout/fragment_now_playing" />
+        tools:layout="@layout/fragment_now_playing" >
+        <action
+            android:id="@+id/action_nav_now_playing_to_nowPlayingDetailsFragment"
+            app:destination="@id/nowPlayingDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_popular"
@@ -26,5 +30,27 @@
         android:id="@+id/nav_upcoming"
         android:name="com.kmh.moviedb.ui.upcoming.UpcomingFragment"
         android:label="@string/upcoming"
-        tools:layout="@layout/fragment_upcoming" />
+        tools:layout="@layout/fragment_upcoming" >
+        <action
+            android:id="@+id/action_nav_upcoming_to_upcomingDetailFragment"
+            app:destination="@id/upcomingDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nowPlayingDetailsFragment"
+        android:name="com.kmh.moviedb.detail.NowPlayingDetailsFragment"
+        android:label="fragment_now_playing_details"
+        tools:layout="@layout/fragment_now_playing_details" >
+        <argument
+            android:name="item_details"
+            app:argType="com.kmh.moviedb.model.ResultsItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/upcomingDetailFragment"
+        android:name="com.kmh.moviedb.detail.UpcomingDetailFragment"
+        android:label="fragment_upcoming_detail"
+        tools:layout="@layout/fragment_upcoming_detail" >
+        <argument
+            android:name="itemUpcomingDetail"
+            app:argType="com.kmh.moviedb.model.ResultsItem" />
+    </fragment>
 </navigation>

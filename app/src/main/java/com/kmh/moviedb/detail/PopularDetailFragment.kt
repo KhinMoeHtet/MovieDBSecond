@@ -11,23 +11,22 @@ import com.kmh.moviedb.model.ResultsItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_now_playing_details.*
 
+class PopularDetailFragment : Fragment() {
 
-class TopRatedDetailFragment : Fragment() {
-
-    private val args: TopRatedDetailFragmentArgs by navArgs()
+    private val args: PopularDetailFragmentArgs by navArgs()
     private lateinit var item: ResultsItem
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_rated_detail, container, false)
+        return inflater.inflate(R.layout.fragment_popular_detail, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        item=args.itemTopRatedDetail
+
+        item=args.itemPopularDetail
 
         movieDetailTitle.text=item.originalTitle
         voteCount.text=item.voteCount.toString()
@@ -37,6 +36,4 @@ class TopRatedDetailFragment : Fragment() {
             .load("http://image.tmdb.org/t/p/w500"+item.posterPath)
             .into(movieDetailImage)
     }
-
-
 }

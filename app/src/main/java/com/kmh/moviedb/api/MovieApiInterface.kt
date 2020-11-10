@@ -18,6 +18,15 @@ interface MovieApiInterface {
         @Query("api_key")api_key:String
     ):Call<NowPlayingModel>
 
+    @GET("popular")
+    fun getPopular(
+        @Query("api_key")api_key:String
+    ):Call<NowPlayingModel>
+
+    @GET("top_rated")
+    fun getTopRated(
+        @Query("api_key")api_key:String
+    ):Call<NowPlayingModel>
 
 
 

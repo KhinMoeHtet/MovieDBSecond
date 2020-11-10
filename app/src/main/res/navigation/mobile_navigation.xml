@@ -19,13 +19,21 @@
         android:id="@+id/nav_popular"
         android:name="com.kmh.moviedb.ui.popular.PopularFragment"
         android:label="@string/popular"
-        tools:layout="@layout/fragment_popular" />
+        tools:layout="@layout/fragment_popular" >
+        <action
+            android:id="@+id/action_nav_popular_to_popularDetailFragment"
+            app:destination="@id/popularDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_top_rated"
         android:name="com.kmh.moviedb.ui.topRated.TopRatedFragment"
         android:label="@string/top_rated"
-        tools:layout="@layout/fragment_top_rated" />
+        tools:layout="@layout/fragment_top_rated" >
+        <action
+            android:id="@+id/action_nav_top_rated_to_topRatedDetailFragment"
+            app:destination="@id/topRatedDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_upcoming"
         android:name="com.kmh.moviedb.ui.upcoming.UpcomingFragment"
@@ -51,6 +59,24 @@
         tools:layout="@layout/fragment_upcoming_detail" >
         <argument
             android:name="itemUpcomingDetail"
+            app:argType="com.kmh.moviedb.model.ResultsItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularDetailFragment"
+        android:name="com.kmh.moviedb.detail.PopularDetailFragment"
+        android:label="fragment_popular_detail"
+        tools:layout="@layout/fragment_popular_detail" >
+        <argument
+            android:name="itemPopularDetail"
+            app:argType="com.kmh.moviedb.model.ResultsItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/topRatedDetailFragment"
+        android:name="com.kmh.moviedb.detail.TopRatedDetailFragment"
+        android:label="fragment_top_rated_detail"
+        tools:layout="@layout/fragment_top_rated_detail" >
+        <argument
+            android:name="itemTopRatedDetail"
             app:argType="com.kmh.moviedb.model.ResultsItem" />
     </fragment>
 </navigation>

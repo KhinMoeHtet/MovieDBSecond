@@ -25,4 +25,14 @@ class ApiClient {
     fun getUpcoming():Call<NowPlayingModel>{
         return apiInterface.getUpcoming("f3a978a7e675e75b7d3b2838545eeed5")
     }
+
+    fun getPopular():Call<NowPlayingModel>{
+        return apiInterface.getPopular("f3a978a7e675e75b7d3b2838545eeed5")
+    }
+
+    fun getTopRated():Call<NowPlayingModel>{
+        return apiInterface.getTopRated("f3a978a7e675e75b7d3b2838545eeed5")
+    }
+
+
 }

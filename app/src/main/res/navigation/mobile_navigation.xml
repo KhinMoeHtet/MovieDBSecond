@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_now_playing_to_nowPlayingDetailsFragment"
             app:destination="@id/nowPlayingDetailsFragment" />
+        <action
+            android:id="@+id/action_nav_now_playing_to_searchFragment2"
+            app:destination="@id/searchFragment2" />
     </fragment>
 
     <fragment
@@ -79,4 +82,11 @@
             android:name="itemTopRatedDetail"
             app:argType="com.kmh.moviedb.model.ResultsItem" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.kmh.moviedb.search.SearchFragment"
+        android:label="@string/search_movie"
+        tools:layout="@layout/fragment_search2" />
+
+
 </navigation>

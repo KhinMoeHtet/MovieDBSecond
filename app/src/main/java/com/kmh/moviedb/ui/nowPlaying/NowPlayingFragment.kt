@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kmh.moviedb.R
 import com.kmh.moviedb.model.ResultsItem
@@ -46,6 +47,9 @@ class NowPlayingFragment : Fragment(),MovieAdapter.OnClickListener{
 
         }
       )
+        btnClick.setOnClickListener{
+            findNavController().navigate(R.id.action_nav_now_playing_to_searchFragment2)
+        }
 
     }
 
